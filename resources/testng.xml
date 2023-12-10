@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="basicAnnotations">
+    <test name="basicAnnotations">
+        <classes>
+            <class name="TestNG.AllAnnotations"></class>
+        </classes>
+    </test>
+
+    <test name="GroupTest">
+        <groups>
+            <define name="dailyBuild">
+                <include name="Sanity" />
+                <include name="functional" />
+            </define>
+            <define name="weeklyBuild">
+                <include name="Sanity" />
+                <include name="functional" />
+                <include name="Regression" />
+                <include name="database" />
+            </define>
+            <run>
+                <include name="weeklyBuild"></include>
+                <exclude name="Regression"></exclude>
+            </run>
+        </groups>
+        <classes>
+            <class name="TestNG.GroupTest"></class>
+        </classes>
+    </test>
+
+    <test name="DependsonTest">
+        <classes>
+            <!--  <class name="TestNG.DependsOnTest"></class>-->
+        </classes>
+    </test>
+
+    <parameter name="username" value="Juan"></parameter>
+    <parameter name="password" value="Savio"></parameter>
+    <test name="ParametersTest">
+        <classes>
+            <class name="TestNG.ParametersofTestng"></class>
+        </classes>
+    </test>
+
+    <test name="DataProviderTest">
+        <classes>
+            <class name="TestNG.Dataprovider"></class>
+        </classes>
+    </test>
+
+    <test name="EnableAndDisableTest" enabled="false">
+        <classes>
+            <class name="TestNG.EnableandDisableTest"></class>
+        </classes>
+    </test>
+
+    <test name="PriorityTest" enabled="true">
+        <classes>
+            <class name="TestNG.PriorityTesting"></class>
+        </classes>
+    </test>
+
+    <test name="IgnoreTesting" enabled="false">
+        <classes>
+            <class name="TestNG.IgnoreTest"></class>
+        </classes>
+    </test>
+</suite>

@@ -9,7 +9,7 @@ public class GroupTest {
 	{
 		System.out.println("Setup()");
 	}
-	@Test(groups={"Sanity"})
+	@Test(groups={"Sanity", "functional"})
 	public void test1()
 	{
 		System.out.println("groups={Sanity}");
