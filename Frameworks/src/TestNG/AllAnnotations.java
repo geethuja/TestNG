@@ -15,14 +15,14 @@ import org.testng.annotations.Test;
 public class AllAnnotations {
 	
 	@BeforeSuite
-	public void beforesuit()
+	public void beforeSuiteTest()
 	{
 		System.out.println("BeforeSuite()");
 	}
 	@BeforeClass
-	public void beforeclass()
+	public void beforeClassTest()
 	{
-		System.out.println("Beforeclass()");
+		System.out.println("Before class()");
 	}
 	@BeforeMethod
 	public void beforeMethod()

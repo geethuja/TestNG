@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/Users/geethujatom/Desktop/MyGitRepo/Java/TestNG/resources">
+        <classes>
+            <class name="TestNG.PriorityTesting">
+                <methods>
+                    <include name="Login"/>
+                    <include name="searchForTheFlight"/>
+                    <include name="bookTheFlight"/>
+                    <include name="saveTicket"/>
+                    <include name="logout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

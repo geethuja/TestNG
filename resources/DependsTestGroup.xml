@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/Users/geethujatom/Desktop/MyGitRepo/Java/TestNG/resources">
+        <groups>
+            <dependencies>
+                <group name="sanity" depends-on="smoke"></group>
+                <group name="regression" depends-on="sanity"></group>
+            </dependencies>
+        </groups>
+        <classes>
+            <class name="TestNG.TestGroupDependency">
+            </class>
+        </classes>
+    </test>
+</suite>
