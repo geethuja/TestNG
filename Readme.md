@@ -195,6 +195,103 @@
                 
 #### Dataprovider
     - What ?
+        - container which can pass test data sets to test methods
     - Why ?
+        - verify the tests with multiple set of data
+        - paramterize test data to test methods
     - How ?
-    - What happens if we dont provide a nuame to dataprovider ?
+        - use annotation : @DataProvider(name="data") and keep data
+            - @DataProvider(name="data")
+![img_3.png](img_3.png)
+    - What happens if we dont provide a name to dataprovider ?
+        - we will get exception, data provider can not find out
+        - You can use method name as data provider name
+    - Is it mandatory to return Object[][] from the dataprovider ?
+        - No, we have other return types
+    - What are the return types of dataprovider?
+        - Object[] (single dimensional array)
+        - Object[][] (multi dimensional array)
+        - Iterator<Object>
+        - Iterator<Object[]>
+    - How do we specify the parameters in method signature of test method?
+        - Object - any data type (pre-defined {string, integer, float} /user defined{Employee[], car[])
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
+        - Object array can hold both string and integer values
+![img_6.png](img_6.png)
+        - Multi dimensional Array
+![img_7.png](img_7.png)
+        - use as parameters inside test method (string username , String password)
+        - Jagged Array: row count and column count are not fixed
+            - so we can use single dimensional array
+![img_8.png](img_8.png)
+        - When to use Iterator ?
+            - if you are stored data as form of collections (sets, list etc)
+        - When to use Iterator<object[]> ?
+            - if you add iterator of string arrays
+![img_10.png](img_10.png)
+        - Indices : use some of dataprovider data (partial data)
+        - test data index is known as indices
+            - {"geethu", "neethu", "mathu", "juan"}
+            - we need only geethu and mathu , ie 0,2 index
+        - parameter name : @DataProvider(indices = {0,2})
+        - WHat happened if you use not indices?
+            - we will pass all test data to test run
+            - we have 100 sets , we have test run 2/100 failed 
+            - we need to debug why those two failed 
+            - we can use indices concept
+        - Can we Separate data provider from test class?
+            - Yes, by default test looking for dataProvider in same class
+        - What is dataProviderClass ? Why do we use the dataProviderClass?
+            - Parameter inside @test annotation ;dataProviderClass
+            - @Test(dataProvider = "String_data", dataProviderClass = DataSupplier.class)
+            - Why ? to specify where data is available 
+        - How to use dataProviderClass?
+            -  We have another java class which keep test data: DataSupplier.java
+            - ![img_11.png](img_11.png)
+            - add to @test;
+            - ![img_12.png](img_12.png)
+        - can we have multiple dataProvider in dataProviderClass ?
+            - Yes, using different method name ,string_data, DP2
+            - ![img_13.png](img_13.png)
+            - ![img_14.png](img_14.png)
+        - Can we have multiple dataprovider class in a project?
+            - Yes, we are specifying data provider class and specify methods, 
+            - so it won't be any problem if we have multiple data supplier class
+
+    ##### Integration of Excel with dataprovider
+        - Libraries available for reading the data from Excel file
+            - Excel file -> xls(older version){H}, xlsx{X}
+            - Apache POI java library, JXL
+            - Apache POI java library supports both version 
+            - JXL is fast but it only support xls
+        - How to read data from excel file dynamically?
+                - Workbook > sheet > row > cell
+                - 1. Get File instance using File 
+                - 2. Get row data using FileInputstream 
+                - 3. convert row data into excel workbook format
+                - 4. get workbook(XSSFWorkbook), get sheet by sheetname (XSSFSheet)
+                - 5. get rows and Iterate through row( find no of rows = .getPyscialNumberOfRows)
+                - 6. get no of  columns (getRow(0).getLastCellNum()
+                - 7. get cell (getRow(i).getCell(i).getStringCellvalue())
+![img_15.png](img_15.png)
+                - DataFormatter : convert any type fo data into normal text data
+![img_16.png](img_16.png)
+                - using object array
+![img_17.png](img_17.png)
+        - How to create dataprovider by reading the data from execl file?
+![img_18.png](img_18.png)
+![img_19.png](img_19.png)
+        - How to maintain the dataprovider in separate class ?
+            - we only need to modify execl file, no need to modify code
+            - Increase test data or reduce test data is easy 
+##### Parallel execution with dataProvider
+        - by default , it is executing sequencally 
+        - parallel execution saves time 
+        - How ?
+            - pass parameter to @Dataprovider
+            - @DataProvider(parallel = true)
+            - if we have more test data , we need to control thread count
+            - Specify it on testng.xml at suite level
+   ![img_20.png](img_20.png)
+            
