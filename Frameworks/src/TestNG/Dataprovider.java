@@ -21,6 +21,7 @@ public class Dataprovider {
 	@Test(dataProvider="data")
 	public void test1(String username,String password)
 	{
+
 		System.out.println("username"+"password");
 	}
 
